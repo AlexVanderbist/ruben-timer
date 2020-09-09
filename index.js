@@ -36,9 +36,18 @@ app.post('/start-timer', function (req, res) {
     }
 
     running = true;
-    timerStart = Date.now();
 
     res.send('Timer started');
+});
+
+app.post('/stop-timer', function (req, res) {
+    if (! running) {
+        return res.send('Timer not running');
+    }
+
+    running = false;
+
+    res.send('Timer stopped');
 });
 
 app.post('/reset-timer', function (req, res) {
