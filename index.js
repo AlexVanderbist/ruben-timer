@@ -77,5 +77,5 @@ app.post('/set-timer-length/:length', function (req, res) {
 app.post('/set-total/:new_total', function (req, res) {
     total = req.params.new_total;
 
-    res.send(`Total is now ${new_total}`);
+    res.send(`Total is now ${total}`);
 });
