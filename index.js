@@ -25,7 +25,7 @@ setInterval(function () {
 
 app.get('/', function (req, res) {
     return res.json({
-        timer: Math.floor(timer/timerLength) * 100,
+        timer: Math.floor(timer/timerLength * 100),
         total,
     });
 });
