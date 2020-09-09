@@ -2,21 +2,28 @@ var express = require('express');
 var app = express();
 
 let running = false;
-let timerStart = Date.now();
-let timerLength = 120;
+let timer = 0;
 let total = 0;
+let timerLength = 240;
 
 app.listen(3000, () => {
     console.log(`Timer app listening at http://localhost:3000`)
 })
 
+setInterval(function () {
+    if (! running) {
+        return;
+    }
+
+    timer++;
+
+    if (timer >= timerLength) {
+        timer = 0;
+        total++;
+    }
+}, 1000);
+
 app.get('/', function (req, res) {
-    let currentTs = Date.now();
-    let diff = currentTs - timerStart;
-    let timer = Math.floor((diff / (timerLength / 100)) % 100);
-
-    total = Math.floor(diff/timerLength);
-
     return res.json({
         timer,
         total,
@@ -35,7 +42,7 @@ app.post('/start-timer', function (req, res) {
 });
 
 app.post('/reset-timer', function (req, res) {
-    timerStart = Date.now();
+    timer = 0;
 
     return 'Timer reset';
 });
