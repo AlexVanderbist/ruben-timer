@@ -1,14 +1,21 @@
 var express = require('express');
 var app = express();
 
+// Certificate
+const privateKey = fs.readFileSync('/etc/nginx/ssl/server.alexvanderbist.com/895232/server.key', 'utf8');
+const certificate = fs.readFileSync('/etc/nginx/ssl/server.alexvanderbist.com/895232/server.crt', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+};
+
 let running = false;
 let timer = 0;
 let total = 0;
 let timerLength = 240;
 
-app.listen(3000, () => {
-    console.log(`Timer app listening at http://localhost:3000`)
-})
+https.createServer(credentials, app).listen(3000);
 
 setInterval(function () {
     if (! running) {
