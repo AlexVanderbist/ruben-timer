@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var https = require('https');
+var cors = require('cors')
 
 // Certificate
 const privateKey = fs.readFileSync('/etc/nginx/ssl/server.alexvanderbist.com/895232/server.key', 'utf8');
@@ -16,6 +17,8 @@ let running = false;
 let timer = 0;
 let total = 0;
 let timerLength = 240;
+
+app.use(cors())
 
 https.createServer(credentials, app).listen(3000);
 
