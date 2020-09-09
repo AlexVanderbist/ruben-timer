@@ -15,13 +15,13 @@ setInterval(function () {
         return;
     }
 
-    timer++;
+    timer += 0.1;
 
     if (timer > timerLength) {
         timer = 0;
         total++;
     }
-}, 1000);
+}, 100);
 
 app.get('/', function (req, res) {
     return res.json({
