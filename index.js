@@ -32,23 +32,23 @@ app.get('/', function (req, res) {
 
 app.post('/start-timer', function (req, res) {
     if (running) {
-        return 'Timer already running';
+        return res.send('Timer already running');
     }
 
     running = true;
     timerStart = Date.now();
 
-    return 'Timer started';
+    res.send('Timer started');
 });
 
 app.post('/reset-timer', function (req, res) {
     timer = 0;
 
-    return 'Timer reset';
+    res.send('Timer reset');
 });
 
 app.post('/set-timer-length/:length', function (req, res) {
     timerLength = req.params.length;
 
-    return `Timer takes ${timerLength} seconds`;
+    res.send(`Timer takes ${timerLength} seconds`);
 });
