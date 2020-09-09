@@ -17,7 +17,7 @@ setInterval(function () {
 
     timer++;
 
-    if (timer >= timerLength) {
+    if (timer > timerLength) {
         timer = 0;
         total++;
     }
@@ -25,7 +25,7 @@ setInterval(function () {
 
 app.get('/', function (req, res) {
     return res.json({
-        timer,
+        timer: Math.floor(timer/timerLength) * 100,
         total,
     });
 });
