@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var fs = require('fs');
+var https = require('https');
 
 // Certificate
 const privateKey = fs.readFileSync('/etc/nginx/ssl/server.alexvanderbist.com/895232/server.key', 'utf8');
